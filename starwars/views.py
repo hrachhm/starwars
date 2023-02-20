@@ -1,15 +1,14 @@
-from starwars.utils.default_args import DefaultArgs
-from django.shortcuts import render
-from django.views.generic import View
-from starwars.models import Metadata
-from django.views.generic import DetailView
 import datetime
-from .utils.starwars_api_helper import StarwarsEtl, StarWarsLookup
+
 import petl as etl
-
-
-
 from django.contrib import messages
+from django.shortcuts import render
+from django.views.generic import DetailView, View
+
+from starwars.models import Metadata
+from starwars.utils.default_args import DefaultArgs
+
+from .utils.starwars_api_helper import StarwarsEtl, StarWarsLookup
 
 
 def home_view(request):

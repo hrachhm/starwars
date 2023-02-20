@@ -31,22 +31,17 @@
   var columnsInput = document.getElementById('columns');
   var buttons = document.querySelectorAll('.btn');
 
-  // Check if the "columns" parameter is present in the URL
   var urlParams = new URLSearchParams(window.location.search);
   if (urlParams.has('columns')) {
-    // Get the selected values from the "columns" parameter
     var selectedValues = urlParams.get('columns').split('&?columns=');
     buttons.forEach(function (button) {
-      // Check if the button's value is in the selected values array
       if (selectedValues.includes(button.getAttribute('data-value'))) {
         button.classList.add('selected');
       }
     });
-    // Set the initial value of the hidden input field
     columnsInput.value = selectedValues.join('&?columns=');
   }
 
-  // Add a click listener to each button
   buttons.forEach(function (button) {
     button.addEventListener('click', function () {
       button.classList.toggle('selected');

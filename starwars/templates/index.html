@@ -4,32 +4,31 @@
 <html>
 
 <style>
-.star-wars-home {
-  background-image: url("{% static '/images/bg1.jpg' %}");
-  background-size: cover;
-  }
+    .star-wars-home {
+        background-image: url("{% static '/images/bg1.jpg' %}");
+        background-size: cover;
+    }
 
-  .btn {
-  padding: 10px 200px;
-  position: fixed;
-  left: 100px;
-  top: 50%;
-  white-space: nowrap;
-  color: rgb(101, 130, 202);
-}
-
-
-
-
+    .btn {
+        padding: 10px 200px;
+        position: fixed;
+        left: 100px;
+        top: 50%;
+        white-space: nowrap;
+        color: rgb(101, 130, 202);
+    }
 </style>
+
 <head>
     <title>StarWars</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
+
 <body class="star-wars-home">
     <button class="btn" id="explore" onclick="window.location.href='/download/'">
         Explore Star Wars data
     </button>
-    
+
 </body>
+
 </html>
