@@ -1,0 +1,49 @@
+<!-- download_data.html -->
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<header>
+  <div class="container">
+    <nav>
+
+        <a href="/" class="home">Home</a>
+        <h2>Star Wars People Data</h2>
+
+    </nav>
+  </div>
+</header>
+{% block content %}
+<h2></h2>
+<form action="{% url 'download_data' %}" method="get">
+  <input type="hidden" name="download_data" value="true">
+  <button type="submit" class="btn btn-primary">Download</button>
+</form>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+        {% endif %}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for dataset in datasets %}
+    <tr>
+      <td>{{ dataset.file_name }}</td>
+      <td>{{ dataset.date }}</td>
+      <td><a href="{% url 'dataset_detail' dataset.pk %}">View</a></td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="3">No datasets downloaded yet.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<header>
+  <div class="container">
+    <nav>
+      <a href="/" class="home">Home</a>
+    </nav>
+  </div>
+</header>
+
+
+<form id="columns-form" method="GET">
+  <label for="columns">Select columns to count:</label>
+  <div>
+    <button type="button" class="btn" data-value="name">Name</button>
+    <button type="button" class="btn" data-value="height">Height</button>
+    <button type="button" class="btn" data-value="mass">Mass</button>
+    <button type="button" class="btn" data-value="hair_color">Hair Color</button>
+    <button type="button" class="btn" data-value="skin_color">Skin Color</button>
+    <button type="button" class="btn" data-value="eye_color">Eye Color</button>
+    <button type="button" class="btn" data-value="birth_year">Birth Year</button>
+    <button type="button" class="btn" data-value="date">Date</button>
+    <button type="button" class="btn" data-value="homeworld">Homeworld</button>
+  </div>
+  <input type="hidden" id="columns" name="columns">
+  <input type="submit" style="display: none">
+</form>
+
+<script>
+  var form = document.getElementById('columns-form');
+  var columnsInput = document.getElementById('columns');
+  var buttons = document.querySelectorAll('.btn');
+
+  // Check if the "columns" parameter is present in the URL
+  var urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('columns')) {
+    // Get the selected values from the "columns" parameter
+    var selectedValues = urlParams.get('columns').split('&?columns=');
+    buttons.forEach(function (button) {
+      // Check if the button's value is in the selected values array
+      if (selectedValues.includes(button.getAttribute('data-value'))) {
+        button.classList.add('selected');
+      }
+    });
+    // Set the initial value of the hidden input field
+    columnsInput.value = selectedValues.join('&?columns=');
+  }
+
+  // Add a click listener to each button
+  buttons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      button.classList.toggle('selected');
+      var selectedValues = [];
+      buttons.forEach(function (btn) {
+        if (btn.classList.contains('selected')) {
+          selectedValues.push(btn.getAttribute('data-value'));
+        }
+      });
+      columnsInput.value = selectedValues.join('&?columns=');
+      form.submit();
+    });
+  });
+
+
+</script>
+{% block content %}
+<h1>{{ object.filename }}</h1>
+<table>
+  <thead>
+    <tr>
+      {% for column in columns %}
+      <th>{{ column }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in table %}
+    <tr>
+      {% for item in row %}
+      <td>{{ item }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if table and is_main%}
+<div>
+  <a href="?offset={{ offset }}">Load More</a>
+</div>
+{% endif %}
+
+{% endblock %}

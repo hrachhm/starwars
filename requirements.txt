@@ -1,0 +1,4 @@
+Django>=3.0,<4.0
+psycopg2>=2.8
+petl == 1.7.12
+requests
