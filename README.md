@@ -1,6 +1,6 @@
-### Star Wars API and Web App
+# Star Wars API and Web App
 
-# How to run
+## How to run
 - Make sure you have Docker and Docker Compose installed on your system.
 - Open a terminal window and navigate to the directory where the docker-compose.yaml file is saved.
 - Run the command docker-compose up to start the containers defined in the docker-compose.yaml file.
@@ -8,7 +8,7 @@
 - Open a web browser and go to http://localhost:8000 to access the home page of the app.
 
 
-# How it works 
+## How it works 
 
 The app works with the metadata table in the database. Here's how it works:
 
@@ -21,7 +21,7 @@ The app works with the metadata table in the database. Here's how it works:
 - The app sends a message indicating the status of the process.
 
 
-# comments on how the app can be further improved and optimized
+## Comments on how the app can be further improved and optimized
 
 The app can be improved and optimized in the following ways:
 
